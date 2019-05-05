@@ -62,3 +62,13 @@ There is also a giveaway command to run giveaways with. If you don't want it, ei
 Neither of these commands are documented as they are only to be used by whoever runs the bot, and that is not most people. It's not for security via obscurity, but rather because a long help file where half the commands aren't needed is annoying.
 
 Want to donate? 0xA0F7aAAF3161c5611a904263bFfe45C92394Da44
+
+### Updates for NoteBC
+
+Following are the changes (planned/implemented) for NoteBC
+
+- Pass bot prefix through btcSettings.json
+
+- Add additional commands (such as coin specs, pool info etc.)
+
+Want to donate notes? NifZuXDrcwcWJQPAXQbQVfPhBQFnMUFECz
