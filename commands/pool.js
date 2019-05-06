@@ -1,4 +1,4 @@
-//Require FS to be able to save the pools back t the disk.
+//Require FS to be able to save the pools back to the disk.
 var fs = require("fs");
 
 var pools = process.settings.pools;
