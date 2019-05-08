@@ -4,6 +4,9 @@ var path = require("path");
 //Array of each command to its file.
 var commands;
 
+// Variables from settings file
+var prefix = process.settings.discord.botprefix;
+
 //Parses a message.
 async function parseMsg(msg) {
     //If the command exists, hand it off.
@@ -13,7 +16,7 @@ async function parseMsg(msg) {
     }
 
     //Else, print that the command doesn't exist.
-    msg.obj.reply("That is not a command. Run \"!help\" to get a list of commands or edit your last message.");
+    msg.obj.reply("That is not a command. Run \"${prefix}help\" to get a list of commands or edit your last message.");
 }
 
 //Prepares, verifies, and formats a message.
@@ -42,7 +45,7 @@ async function handleMessage(msg) {
     text = text.join(" ");
 
     //If the message's first character is not the activation symbol, return.
-    if (text.substr(0, 1) !== "!") {
+    if (text.substr(0, 1) !== ${prefix}) {
         return;
     }
 
