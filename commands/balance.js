@@ -1,5 +1,4 @@
 var pools = process.settings.pools;
-var dminfo = process.settings.discord.senddm;
 
 module.exports = async (msg) => {
     //If an argument was provided...

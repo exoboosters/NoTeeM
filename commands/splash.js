@@ -9,20 +9,31 @@ BN.config({
 var pools = process.settings.pools;
 var symbol = process.settings.coin.symbol;
 var prefix = process.settings.discord.botprefix;
+var servid = process.settings.discord.serverid;
 
 module.exports = async (msg) => {
     //Tip details.
-    var pool, from, to, amount;
+    var pool, from, amount, online, finamount;
 
-    //Tip from an user.
-    if (msg.text.length === 3) {
+    //Get the total number of online users
+	const guild = bot.guilds.get(servid);
+	var onlineCount = guild.members.filter(m => m.presence.status === 'online');
+	
+    //Tip from an user to everyone online.
+    if (msg.text.length === 2) {
         //Set the tip's details.
         pool = false;
         from = msg.sender;
-        to = msg.text[1].replace(prefix, ""); //Turn <!@ into <@.
-        amount = msg.text[2];
+        //to = msg.text[1].replace(prefix, ""); //Turn <$@ into <@.
+		// Amount is the second field
+        amount = msg.text[1];
+		
+		if (onlineCount > 0) {
+			finamount = amount / onlineCount;
+		}
+		
     //Tip from a pool.
-    } else if (msg.text.length === 4) {
+    } else if (msg.text.length === 3) {
         //Declare that this a pool tip.
         pool = true;
         //Set the from, and then verify the pool status.

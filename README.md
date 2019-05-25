@@ -67,8 +67,10 @@ Want to donate? 0xA0F7aAAF3161c5611a904263bFfe45C92394Da44
 
 Following are the changes (planned/implemented) for NoteBC
 
-- Pass bot prefix through btcSettings.json
-
+- Pass bot prefix through erc20/btcSettings.json
+- If the bot is locked to specific channels, allow DM as valid channel to pass commands to the bot
+- Make a splash - split amount to all online users
+- Updated messages
 - Add additional commands (such as coin specs, pool info etc.)
 
-Want to donate notes? NifZuXDrcwcWJQPAXQbQVfPhBQFnMUFECz
+Want to donate notes? Nj1fhQFjeaT56pSA9vLbaEB7fdhmTKnYRz

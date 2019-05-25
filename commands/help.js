@@ -5,7 +5,7 @@ var decimals = process.settings.coin.decimals;
 var fee = process.settings.coin.withdrawFee;
 var prefix = process.settings.discord.botprefix;
 
-//Default help tect.
+//Default help text.
 var help = `
 **TIPBOT COMMAND LIST**
 
@@ -13,7 +13,7 @@ To run a command, either preface it with "${prefix}" ("${prefix}deposit", "${pre
 
 This bot does use decimals, and has ${decimals} decimals of accuracy. You can also use "all" instead of any AMOUNT to tip/withdraw your entire balance.
 
--- ***${prefix}balance***
+-- ***${prefix}balance*** or ***${prefix}bal***
 Prints your balance.
 
 -- ***${prefix}tip <@PERSON> <AMOUNT>***
@@ -23,10 +23,10 @@ Tips the person that amount of ${symbol}.
 Withdraws AMOUNT to ADDRESS, charging a ${fee} ${symbol} fee.
 
 -- ***${prefix}deposit***
-Prints your personal deposit address.
+Prints your personal deposit address. 
 
--- ***${prefix}specs***
-Shows the specifications of the coin ${symbol}.
+-- ***${prefix}splash <AMOUNT>***
+Tips the total AMOUNT amongst online users equally.
 
 -- ***${prefix}stats***
 Displays the total tips sent through this bot (this is not implemented yet).

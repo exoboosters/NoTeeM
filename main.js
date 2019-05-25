@@ -34,9 +34,9 @@ async function handleMessage(msg) {
         return item !== "";
     });
 
-    //If the start of the message, is a ping to the bot, swap it for !.
+    //If the start of the message, is a ping to the bot, swap it for the bot prefix.
     if (text[0] === process.settings.discord.user) {
-        text[1] = "!" + text[1];
+        text[1] = prefix + text[1];
         //Also remove the ping.
         text.splice(0, 1);
     }
@@ -57,7 +57,7 @@ async function handleMessage(msg) {
         (await process.core.users.getNotify(sender))
     ) {
         //Give them the notified warning.
-        msg.reply("By continuing to use this bot, you agree to release the creator, owners, all maintainers of the bot, and the " + process.settings.coin.symbol + " Team from any legal liability.");
+        msg.reply("By continuing to use this bot, you agree to release the creator, owners, all maintainers of the bot, and the " + process.settings.coin.symbol + " Team from any legal liability. If ever in doubt, move your ***tip*** wallet balance to your main wallet. Type in any command to begin using " + process.settings.discord.user);
         //Mark them as notified.
         await process.core.users.setNotified(sender);
         return;
@@ -74,7 +74,8 @@ async function handleMessage(msg) {
     //If the command is channel locked...
     if (typeof(process.settings.commands[text[0]]) !== "undefined") {
         //And this is not an approved channel...
-        if (process.settings.commands[text[0]].indexOf(msg.channel.id) === -1) {
+		//Allow commands via DM - msg.guild is null for all DM channels (individual & group)
+        if (process.settings.commands[text[0]].indexOf(msg.channel.id) === -1 && msg.guild !== null) {
             //Print where it can be used.
             msg.reply("That command can only be run in:\r\n<#" + process.settings.commands[text[0]].join(">\r\n<#") + ">");
             return;
@@ -103,11 +104,14 @@ async function main() {
     process.core.users = await (require("./core/users.js"))();
 
     //Declare the commands and load them.
+	//setup bal as a duplicate of balance
     commands = {
         help:     require("./commands/help.js"),
         deposit:  require("./commands/deposit.js"),
         balance:  require("./commands/balance.js"),
+		bal:      require("./commands/balance.js"),
         tip:      require("./commands/tip.js"),
+		splash:   require("./commands/splash.js"),
         withdraw: require("./commands/withdraw.js"),
         pool:     require("./commands/pool.js"),
         giveaway: require("./commands/giveaway.js")
