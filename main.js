@@ -4,9 +4,6 @@ var path = require("path");
 //Array of each command to its file.
 var commands;
 
-// Variables from settings file
-var prefix = process.settings.discord.botprefix;
-
 //Parses a message.
 async function parseMsg(msg) {
     //If the command exists, hand it off.
@@ -16,13 +13,16 @@ async function parseMsg(msg) {
     }
 
     //Else, print that the command doesn't exist.
-    msg.obj.reply("That is not a command. Run \"${prefix}help\" to get a list of commands or edit your last message.");
+    msg.obj.reply("That is not a command. Run `${prefix}help` to get a list of commands or edit your last message.");
 }
 
 //Prepares, verifies, and formats a message.
 async function handleMessage(msg) {
     //Get the numeric ID of whoever sent the message.
     var sender = msg.author.id;
+
+	// Variables from settings file
+	var prefix = process.settings.discord.botprefix;
 
     //Do not handle messages from itself.
     if (sender === process.settings.discord.user) {
@@ -115,6 +115,7 @@ async function main() {
         withdraw: require("./commands/withdraw.js"),
         pool:     require("./commands/pool.js"),
         giveaway: require("./commands/giveaway.js")
+		specs:    require("./commands/specs.js")
     };
 
     //Create a Discord process.client.
