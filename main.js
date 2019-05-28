@@ -45,7 +45,7 @@ async function handleMessage(msg) {
     text = text.join(" ");
 
     //If the message's first character is not the activation symbol, return.
-    if (text.substr(0, 1) !== ${prefix}) {
+    if (text.substr(0, 1) !== prefix) {
         return;
     }
 
@@ -114,7 +114,7 @@ async function main() {
 		splash:   require("./commands/splash.js"),
         withdraw: require("./commands/withdraw.js"),
         pool:     require("./commands/pool.js"),
-        giveaway: require("./commands/giveaway.js")
+        giveaway: require("./commands/giveaway.js"),
 		specs:    require("./commands/specs.js")
     };
 

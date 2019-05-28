@@ -16,8 +16,10 @@ module.exports = async (msg) => {
     var pool, from, amount, online, finamount;
 
     //Get the total number of online users
-	const guild = bot.guilds.get(servid);
+	const guild = process.client.guilds.get(servid);
 	var onlineCount = guild.members.filter(m => m.presence.status === 'online');
+	
+	msg.obj.reply("Total number of online users " + onlineCount);
 	
     //Tip from an user to everyone online.
     if (msg.text.length === 2) {
@@ -28,8 +30,17 @@ module.exports = async (msg) => {
 		// Amount is the second field
         amount = msg.text[1];
 		
+		var u, user;
+        for(u in process.client.users){
+           user = process.client.users[u];
+           if(user instanceof Discord.User) msg.obj.reply("["+u+"] "+user.username);
+        }
+		
+		
+		
 		if (onlineCount > 0) {
 			finamount = amount / onlineCount;
+			msg.obj.reply("Amount to tip " + amount + " as " + finamount);
 		}
 		
     //Tip from a pool.
