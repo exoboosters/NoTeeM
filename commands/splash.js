@@ -20,6 +20,12 @@ module.exports = async (msg) => {
 	var onlineCount = guild.members.filter(m => m.presence.status === 'online');
 	
 	msg.obj.reply("Total number of online users " + onlineCount);
+
+		var u, user;
+        for(u in process.client.users){
+           user = process.client.users[u];
+           if(user instanceof Discord.User) msg.obj.reply("["+u+"] "+user.username);
+        }
 	
     //Tip from an user to everyone online.
     if (msg.text.length === 2) {
@@ -30,11 +36,7 @@ module.exports = async (msg) => {
 		// Amount is the second field
         amount = msg.text[1];
 		
-		var u, user;
-        for(u in process.client.users){
-           user = process.client.users[u];
-           if(user instanceof Discord.User) msg.obj.reply("["+u+"] "+user.username);
-        }
+
 		
 		
 		
