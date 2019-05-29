@@ -2,8 +2,9 @@
     "discord": {
         "token": "M discord bot user token",
         "user": "BOT USER ID",
-		"botprefix": "$",
-		"serverid": "unique server id"
+        "botprefix": "$",
+        "serverid": "unique server id",
+        "botActivity": "A catchy phrase here"
     },
 
     "coin": {

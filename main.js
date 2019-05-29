@@ -125,6 +125,8 @@ async function main() {
         handleMessage(msg);
     });
     process.client.login(process.settings.discord.token);
+	//Added an activity status for the bot
+	process.client.user.setActivity(process.settings.discord.botActivity);
 }
 
 (async () => {
