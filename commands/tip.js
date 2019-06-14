@@ -9,6 +9,8 @@ BN.config({
 var pools = process.settings.pools;
 var symbol = process.settings.coin.symbol;
 var prefix = process.settings.discord.botprefix;
+var maxtipamt = parseFloat(process.settings.discord.maxtip);
+
 
 module.exports = async (msg) => {
     //Tip details.
@@ -87,6 +89,12 @@ module.exports = async (msg) => {
         msg.obj.reply("You cannot send to yourself. You could accidentally create a black hole.");
         return;
     }
+
+    //Stop if amount is greater than max tip amount
+	if (amount > maxtipamt) {
+		msg.obj.reply("You are tipping greater than the maximum amount of "+ maxtipamt + " " + symbol);
+		return;
+	}
 
     //Subtract the balance from the user.
     if (!(await process.core.users.subtractBalance(from, amount))) {

@@ -115,6 +115,7 @@ async function main() {
         withdraw: require("./commands/withdraw.js"),
         pool:     require("./commands/pool.js"),
         giveaway: require("./commands/giveaway.js"),
+		online:   require("./commands/online.js"),
 		specs:    require("./commands/specs.js")
     };
 
@@ -124,9 +125,11 @@ async function main() {
     process.client.on("messageUpdate", async (oldMsg, msg) => {
         handleMessage(msg);
     });
-    process.client.login(process.settings.discord.token);
 	//Added an activity status for the bot
-	process.client.user.setActivity(process.settings.discord.botActivity);
+	process.client.on("ready", () => {
+       process.client.user.setActivity(process.settings.discord.botActivity);
+    });
+    process.client.login(process.settings.discord.token);
 }
 
 (async () => {
