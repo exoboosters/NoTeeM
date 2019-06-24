@@ -5,6 +5,9 @@
         "botprefix": "$",
         "serverid": "unique server id"
         "botActivity": "A catchy phrase here",
+		"useDM": [
+			"example"
+		],
 		"maxtip": 99999999
     },
 

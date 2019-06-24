@@ -4,6 +4,7 @@ var symbol = process.settings.coin.symbol;
 var decimals = process.settings.coin.decimals;
 var fee = process.settings.coin.withdrawFee;
 var prefix = process.settings.discord.botprefix;
+var maxtipamt = process.settings.discord.maxtip;
 
 //Default help text.
 var help = `
@@ -17,7 +18,7 @@ This bot does use decimals, and has ${decimals} decimals of accuracy. You can al
 Prints your balance.
 
 -- ***${prefix}tip <@PERSON> <AMOUNT>***
-Tips the person that amount of ${symbol}.
+Tips the person that amount of ${symbol}. The maximum amount you can tip is ${maxtipamt}.
 
 -- ***${prefix}withdraw <AMOUNT> <ADDRESS>***
 Withdraws AMOUNT to ADDRESS, charging a ${fee} ${symbol} fee.
@@ -26,7 +27,7 @@ Withdraws AMOUNT to ADDRESS, charging a ${fee} ${symbol} fee.
 Prints your personal deposit address. 
 
 -- ***${prefix}splash <AMOUNT>***
-Tips the total AMOUNT amongst online users equally.
+Tips the total AMOUNT amongst online users equally. (this is not implemented yet).
 
 -- ***${prefix}stats***
 Displays the total tips sent through this bot (this is not implemented yet).
