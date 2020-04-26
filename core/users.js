@@ -39,14 +39,22 @@ async function create(user) {
     if (users[user]) {
         return false;
     }
-
+    // User table is now updated to
+	// name
+	// address
+	// balance
+	// notify
+	// received <- new
+	// sent <- new
     //Create the new user, with a blank address, balance of 0, and the notify flag on.
-    await connection.query("INSERT INTO " + table + " VALUES(?, ?, ?, ?)", [user, "", "0", 1]);
-    //Create the new user in the RAM cache, with a status of no address, balance of 0, and the notify flag on.
+    await connection.query("INSERT INTO " + table + " VALUES(?, ?, ?, ?, ?, ?)", [user, "", "0", 1, "0", "0"]);
+    //Create the new user in the RAM cache, with a status of no address, balance of 0, the notify flag on, received amount of 0 and sent amount of 0.
     users[user] = {
         address: false,
         balance: BN(0),
-        notify: true
+        notify: true,
+		received: BN(0),
+		sent: BN(0)
     };
 
     //Return true on success.
@@ -78,7 +86,7 @@ async function addBalance(user, amount) {
     //Convert the balance to the coin's smallest unit.
     balance = balance.toFixed(process.settings.coin.decimals);
     //Update the table with the new balance, as a string.
-    await connection.query("UPDATE " + table + " SET balance = ? WHERE name = ?", [balance, user]);
+    await connection.query("UPDATE " + table + " SET balance = ?, received = received + ? WHERE name = ?", [balance, amount, user]);
     //Update the RAM cache with a BN.
     users[user].balance = BN(balance);
 
