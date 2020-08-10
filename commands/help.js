@@ -34,7 +34,7 @@ Displays the total tips sent through this bot (this is not implemented yet).
 
 If you have any questions, feel free to ask <@463057187569270809>.
 
-This bot is fully open source and available at https://github.com/exoboosters/tip-bot. It is based of the tip-bot kayabaNerve/tip-bot
+This bot is fully open source and available at https://github.com/exoboosters/tip-bot. It is based off the tip-bot kayabaNerve/tip-bot
 `;
 
 module.exports = async (msg) => {

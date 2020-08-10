@@ -1,5 +1,6 @@
 //MySQL and BN libs.
 var mysql = require("promise-mysql");
+var fs = require("fs");
 var BN = require("bignumber.js");
 BN.config({
     ROUNDING_MODE: BN.ROUND_DOWN,
@@ -63,7 +64,7 @@ async function create(user) {
 
 //Sets an user's address.
 async function setAddress(user, address) {
-    //If they already have an addrwss, return.
+    //If they already have an address, return.
     if (typeof(users[user].address) === "string") {
         return;
     }
@@ -83,12 +84,16 @@ async function addBalance(user, amount) {
 
     //Add the amount to the balance.
     var balance = users[user].balance.plus(amount);
+    var received = users[user].received.plus(amount);
     //Convert the balance to the coin's smallest unit.
     balance = balance.toFixed(process.settings.coin.decimals);
+    //Convert the received to the coin's smallest unit.
+    received = received.toFixed(process.settings.coin.decimals);
     //Update the table with the new balance, as a string.
-    await connection.query("UPDATE " + table + " SET balance = ?, received = received + ? WHERE name = ?", [balance, amount, user]);
+    await connection.query("UPDATE " + table + " SET balance = ?, received = ? WHERE name = ?", [balance, received, user]);
     //Update the RAM cache with a BN.
     users[user].balance = BN(balance);
+    users[user].received = BN(received);
 
     return true;
 }
@@ -102,6 +107,7 @@ async function subtractBalance(user, amount) {
 
     //Subtracts the amount from the balance.
     var balance = users[user].balance.minus(amount);
+    var sent = users[user].sent.minus(amount);
     //Return false if the user doesn't have enough funds to support subtracting the amount.
     if (balance.lt(0)) {
         return false;
@@ -109,8 +115,9 @@ async function subtractBalance(user, amount) {
 
     //Convert the balance to the coin's smallest unit.
     balance = balance.toFixed(process.settings.coin.decimals);
+    sent = sent.toFixed(process.settings.coin.decimals);
     //Update the table with the new balance, as a string.
-    await connection.query("UPDATE " + table + " SET balance = ? WHERE name = ?", [balance, user]);
+    await connection.query("UPDATE " + table + " SET balance = ? , sent = ? WHERE name = ?", [balance, sent, user]);
     //Update the RAM cache with a BN.
     users[user].balance = BN(balance);
 
@@ -140,6 +147,11 @@ async function getNotify(user) {
     return users[user].notify;
 }
 
+//Returns the top tipper in the channel.
+async function toptipper() {
+    return await connection.query("SELECT name, sent FROM " + table + " WHERE sent = (SELECT MAX(sent) FROM " + table + ")");
+}
+
 module.exports = async () => {
     //Connects to MySQL.
     connection = await mysql.createConnection({
@@ -166,6 +178,8 @@ module.exports = async () => {
             address: (rows[i].address !== "" ? rows[i].address : false),
             //Set the balance as a BN.
             balance: BN(rows[i].balance),
+            received: BN(rows[i].received),
+            sent: BN(rows[i].sent),
             //Set the notify flag based on if the DB has a value of 0 or 1 (> 0 for safety).
             notify: (rows[i].notify > 0)
         };
@@ -196,7 +210,9 @@ module.exports = async () => {
 
         getAddress: getAddress,
         getBalance: getBalance,
-        getNotify: getNotify
+        getNotify: getNotify,
+
+        toptipper: toptipper
     };
 };
 

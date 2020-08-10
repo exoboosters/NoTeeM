@@ -13,10 +13,10 @@
 
     "coin": {
         "type": "btc",
-        "symbol": "BTC",
+        "symbol": "NTBC",
         "decimals": 8,
         "withdrawFee": 0.01,
-        "port": 8332,
+        "port": 9332,
         "user": "user",
         "pass": "pass"
     },
@@ -47,6 +47,19 @@
             "printName": "Giveaways",
             "admins": [],
             "members": []
+        }
+    },
+
+    "stats" : {
+        "tips" : {
+            "total" : 0,
+            "toptipper" : "",
+            "nbrtips" : 0
+        },
+        "chain" : {
+            "height" : 0,
+            "reward" : 0,
+            "hash" : 0
         }
     }
 }

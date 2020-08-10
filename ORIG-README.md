@@ -1,24 +1,8 @@
 # Tip Bot
 
-### A Cryptocoin (NTBC/BTC etc) Tip bot made for Discord, with MySQL as a DB.
+### A BTC and ERC20 Tip bot made for Discord, with MySQL as a DB.
 
-This code is based off the modular BTC & ERC20 Tip Bot [here](https://github.com/kayabaNerve/tip-bot). For the original README file, look at ORIG-README.md in this repo.
-
-## Changes made for NoteBlockchain (NTBC)
-
-Following are the changes (planned/implemented) for NoteBC
-
-- [*] Pass bot prefix through btcSettings.json
-- [*] If the bot is locked to specific channels, allow DM as valid channel to pass commands to the bot
-- [*] Added command `specs` to provide information about the coin
-- [*] Added command `pools` with details of the pools for NTBC
-- [ ] Make a splash - split amount to all online users
-- Updated messages
-- Add additional commands (such as coin specs, pool info etc.)
-
-Want to donate notes? Nj1fhQFjeaT56pSA9vLbaEB7fdhmTKnYRz
-
-QR Code: ![QR Code](https://blocks.notebc.space/qr/Nj1fhQFjeaT56pSA9vLbaEB7fdhmTKnYRz)
+This code is based off the modular (and not secure) ERC20 Tip Bot [here](https://github.com/kayabaNerve/erc20-tip-bot-old-unsafe). This one does not claim to be modular, yet it should be easy to modify this bot to work off other databases or coin APIs.
 
 To install the bot:
 - If the coin is BTC based:
@@ -79,3 +63,14 @@ Neither of these commands are documented as they are only to be used by whoever 
 
 Want to donate? 0xA0F7aAAF3161c5611a904263bFfe45C92394Da44
 
+### Updates for NoteBC
+
+Following are the changes (planned/implemented) for NoteBC
+
+- Pass bot prefix through erc20/btcSettings.json
+- If the bot is locked to specific channels, allow DM as valid channel to pass commands to the bot
+- Make a splash - split amount to all online users
+- Updated messages
+- Add additional commands (such as coin specs, pool info etc.)
+
+Want to donate notes? Nj1fhQFjeaT56pSA9vLbaEB7fdhmTKnYRz

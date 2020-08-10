@@ -42,7 +42,8 @@ Every 600 blocks
 55,000,000,000 (55 billion)
 
 -- ***Reward details***
-4756 ${symbol} per block
+Originally 4756 ${symbol} per block
+Currently 3,804.80 ${symbol} per block (one decrease completed)
 Reward decreases by 20% every 1,051,200 blocks or approximately 1 year.
 ~5B Notes rewarded first year, and 20% less every year after that. (5, 4, 3.2, 2.5, etc).
 
@@ -53,8 +54,9 @@ ${decimals}. Lowest unit is called 1 Mote
 Official website - https://notebc.com
 Web Wallet - https://notebc.io
 Mobile Wallets - https://www.notebc.com/walletsandapps
-Explorer - http://explorer.notebc.io
-Twitter - https://http://twitter.com/BlockchainNote/
+Explorer - http://explorer.notebc.io & https://blocks.notebc.space
+Twitter - https://twitter.com/BlockchainNote/
+Facebook - https://fb.me/BlockchainNote
 GitHub - https://github.com/note-llc/
 
 -- ***Official Admin*** 

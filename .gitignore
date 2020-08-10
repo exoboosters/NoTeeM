@@ -5,6 +5,7 @@ settings.json
 #NPM packages.
 node_modules/
 .npm
+.idea/
 
 # Output of 'npm pack'.
 *.tgz

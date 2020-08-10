@@ -32,6 +32,9 @@ async function send(address, amount) {
     }
 }
 
+//Chain stats
+asyn
+
 module.exports = async () => {
     //Create the client.
     client = new bitcoin({
@@ -88,6 +91,7 @@ module.exports = async () => {
         createAddress: createAddress,
         ownAddress: ownAddress,
         getTransactions: getTransactions,
-        send: send
+        send: send,
+        chain: chain
     };
 };
