@@ -9,6 +9,7 @@
 			"example"
 		],
 		"maxtip": 99999999
+        "giveawayEmoji": "593992166502563865"
     },
 
     "coin": {
@@ -18,12 +19,13 @@
         "withdrawFee": 0.01,
         "port": 9332,
         "user": "user",
-        "pass": "pass"
+        "pass": "pass",
+		"qrurl": "https://blocks.notebc.space/qr/"
     },
 
     "mysql": {
         "db": "tipbot",
-        "table": "btc",
+        "tips": "tips",
         "user": "root",
         "pass": "pass"
     },

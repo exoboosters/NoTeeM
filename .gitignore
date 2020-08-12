@@ -22,3 +22,6 @@ npm-debug.log*
 pids
 *.pid
 *.pid.lock
+
+#Work Notes
+workbook/

@@ -14,7 +14,7 @@ if (cointype === 'erc20') {
     var detail = 'Token';
 }
 
-//Default coin specs.
+//Pool details.
 var specs = `
 **${detail} pools**
 
@@ -22,7 +22,7 @@ var specs = `
 |---------------|-----------------------------|----------|------|--------------|
 | Official Pool | https://mining.notebc.space | France   | 0.2% | exobyte_tech |
 | CryptoCrop    | https://farm.cryptocrop.net | US       |   1% | johnny_chop  |
-|               |                             |          |      |              |
+| 0769.it       | https://0769.it             | US       |   2% |              |
 
 `;
 

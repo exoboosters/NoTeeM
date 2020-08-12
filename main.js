@@ -34,18 +34,34 @@ async function handleMessage(msg) {
         return item !== "";
     });
 
+<<<<<<< HEAD
     //If the start of the message, is a ping to the bot, swap it for the bot prefix.
     if (text[0] === process.settings.discord.user) {
         text[1] = prefix + text[1];
+=======
+    //If the start of the message, is a ping to the bot, swap it for !.
+    if (text[0] === process.client.user.toString()) {
+        text[1] = "!" + text[1];
+>>>>>>> upstream/master
         //Also remove the ping.
         text.splice(0, 1);
     }
 
-    //Rejoin with spaces.
-    text = text.join(" ");
+    //Filter the message.
+    text = text
+        .join(" ")                          //Convert it back into a string.
+        .replace(/[^\x00-\x7F]/g, "")       //Remove unicode.
+        .toLowerCase()                      //Convert it to lower case.
+        .replace(new RegExp("\r", "g"), "") //Remove any \r characters.
+        .replace(new RegExp("\n", "g"), "") //Remoce any \n characters.
+        .split(" ");                        //Split it among spaces.
 
     //If the message's first character is not the activation symbol, return.
+<<<<<<< HEAD
     if (text.substr(0, 1) !== prefix) {
+=======
+    if (text[0].substr(0, 1) !== "!") {
+>>>>>>> upstream/master
         return;
     }
 
@@ -57,19 +73,18 @@ async function handleMessage(msg) {
         (await process.core.users.getNotify(sender))
     ) {
         //Give them the notified warning.
+<<<<<<< HEAD
         msg.reply("By continuing to use this bot, you agree to release the creator, owners, all maintainers of the bot, and the " + process.settings.coin.symbol + " Team from any legal liability. If ever in doubt, move your ***tip*** wallet balance to your main wallet. Type in any command to begin using " + process.settings.discord.user);
+=======
+        msg.reply("By continuing to use this bot, you agree to release the creator, owners, all maintainers of the bot, and the " + process.settings.coin.symbol + " Team from any legal liability.\r\n\r\nPlease run your previous command again.");
+>>>>>>> upstream/master
         //Mark them as notified.
         await process.core.users.setNotified(sender);
         return;
     }
 
-    //Filter the message.
-    text = text
-        .substring(1, text.length)          //Remove the activation symbol.
-        .toLowerCase()                      //Make it lower case.
-        .replace(new RegExp("\r", "g"), "") //Remove any \r characters.
-        .replace(new RegExp("\n", "g"), "") //Remoce any \n characters.
-        .split(" ");                        //Split it among spaces.
+    //Remove the activation symbol.
+    text[0] = text[0].substring(1, text[0].length);
 
     //If the command is channel locked...
     if (typeof(process.settings.commands[text[0]]) !== "undefined") {
@@ -114,21 +129,32 @@ async function main() {
 		splash:   require("./commands/splash.js"),
         withdraw: require("./commands/withdraw.js"),
         pool:     require("./commands/pool.js"),
+<<<<<<< HEAD
         giveaway: require("./commands/giveaway.js"),
 		online:   require("./commands/online.js"),
 		specs:    require("./commands/specs.js")
+=======
+        //giveaway: require("./commands/giveaway.js")
+>>>>>>> upstream/master
     };
 
     //Create a Discord process.client.
     process.client = new (require("discord.js")).Client();
+
+    //Handle messages.
     process.client.on("message", handleMessage);
     process.client.on("messageUpdate", async (oldMsg, msg) => {
         handleMessage(msg);
     });
+<<<<<<< HEAD
 	//Added an activity status for the bot
 	process.client.on("ready", () => {
        process.client.user.setActivity(process.settings.discord.botActivity);
     });
+=======
+
+    //Connect.
+>>>>>>> upstream/master
     process.client.login(process.settings.discord.token);
 }
 

@@ -2,6 +2,7 @@
     "discord": {
         "token": "M discord bot user token",
         "user": "BOT USER ID",
+<<<<<<< HEAD
         "botprefix": "$",
         "serverid": "unique server id"
         "botActivity": "A catchy phrase here",
@@ -9,6 +10,9 @@
 			"example"
 		],
 		"maxtip": 99999999
+=======
+        "giveawayEmoji": "593992166502563865"
+>>>>>>> upstream/master
     },
 
     "coin": {
@@ -16,16 +20,17 @@
         "symbol": "ERC",
         "decimals": 18,
         "withdrawFee": 1,
+        "infura": "wss://mainnet.infura.io/ws/v3/ID",
+        "keys": "/home/tipbot/.ethereum/keystore/",
         "addresses": {
             "wallet": "0x0000000000000000000000000000000000000000",
             "contract": "0x0000000000000000000000000000000000000000"
-        },
-        "ipc": "/home/user/.ethereum/geth.ipc"
+        }
     },
 
     "mysql": {
         "db": "tipbot",
-        "table": "erc",
+        "tips": "tips",
         "user": "root",
         "pass": "pass"
     },
